@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickInstructions"
+            android:text="使用说明"/>
+
+        <Button
+            style="@style/btnFunctionGray"
+            android:onClick="clickSetProperties"
+            android:text="设置Properties"/>
+
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickGetProperties"
+            android:text="获取Properties"/>
+    </LinearLayout>
+
+</ScrollView>

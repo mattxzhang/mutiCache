@@ -1,0 +1,27 @@
+适合User这个全局类，因为上线app一般都有这个，
+单对象使用Properties和SharePreferences存取太麻烦，
+使用数据库又有些不值得（数据就一条），
+可以采用序列化：
+[因为一般只用来装全局User，其他不适合，所以不做封装]
+本身无加密功能（乱码时序列化的结果），请自行用aes或md5等加密。
+
+1.bean类实现Serializable接口
+2.序列化
+   User user = new User();
+   user.setUserId(1);
+   user.setName("咸蛋超人");
+   user.setPassoword("dbdqxmn");
+
+   FileOutputStream fos = new FileOutputStream(file);
+   ObjectOutputStream oos = new ObjectOutputStream(fos);
+   oos.writeObject(user);
+   oos.flush();
+   oos.close();
+   fos.close();
+ 3.反序列化
+    FileOutputStream fos = new FileOutputStream(file);
+    ObjectOutputStream oos = new ObjectOutputStream(fos);
+    oos.writeObject(user);
+    oos.flush();
+    oos.close();
+    fos.close();

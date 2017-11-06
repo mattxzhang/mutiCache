@@ -1,0 +1,22 @@
+在gradle导入greendao,可模仿本项目，缺啥补啥(gradle>=3.3)
+
+数据库加密方式：
+DaoMaster.DevOpenHelper dbHelper = new DaoMaster.DevOpenHelper(CacheForAndorid.getSuperContext(),"my.db",null);
+DaoSession encryptedSession = new DaoMaster(dbHelper.getEncryptedWritableDb("你的密码")).newSession();
+
+添加：
+DBManager.getMyDBDao().insert(user);
+
+删除：
+DBManager.getMyDBDao().deleteByKey(Long.parseLong(userId));
+
+修改：
+Query<DBUser> query= DBManager.getMyDBDao().queryBuilder().where(DBUserDao.Properties.Id.eq(""+newUser.getId())).build();
+List<DBUser> dbUsers  = query.list();
+DBUser oldUser = dbUsers.get(0);
+oldUser.setName(newUser.getName());
+DBManager.getMyDBDao().update(oldUser);
+
+查找：
+Query<DBUser> query= DBManager.getMyDBDao().queryBuilder().build();
+List<DBUser> dbUsers = query.list();

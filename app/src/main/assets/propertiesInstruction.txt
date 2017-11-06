@@ -1,0 +1,29 @@
+和SharePreferences相同，Properties只适合保存简单数据，不适合储存重要数据和大量数据。
+两者不同的是，Properties属于java,SharePreferences是android独有。
+Properities数据比SharePreferences更加简洁，适合配置一些配置相关的数据。
+如app的版本，数据库版本等等。
+Properities可以指定存储目录，SharePreferences不可以。
+所以如果需求要求数据库保存在sd卡或其他目录，相关配置信息可以用Properties.
+Properies只能保存字符串数据
+注意放入sdcard时需要权限，记得配置和向用户请求权限：
+ <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+此处用了第三方的AndPermission判断权限，真心方便
+(在java中可以保存基本类型，现在android高版本部分机器会报错xx cannot cast to String)
+测试不能保存字符串的手机：MI 5X
+为了兼容，自己做了一个PropertiesUtil
+取数据：
+PropertiesUtil.getInstance().resetProperties().loadProperties(saveFile);
+PropertiesUtil mPropertiesUtil = PropertiesUtil.getInstance();
+        int version = mPropertiesUtil.getInt("version");
+        int dbVersion = mPropertiesUtil.getInt("dbVersion");
+        double versionName = mPropertiesUtil.getDouble("versionName");
+        boolean isLatestVersion = mPropertiesUtil.getBoolean("isLatestVersion");
+存数据：
+ PropertiesUtil.getInstance().resetProperties()
+                .put("version",1)
+                .put("dbVersion",2)
+                .put("versionName",1.0)
+                .put("isLatestVersion",true)
+                .put("appName","CacheForAndroid")
+                .save(saveFile);

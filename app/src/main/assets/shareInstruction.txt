@@ -1,0 +1,18 @@
+首先，SharePreferences可用于保存数据，但不能用来保存重要数据。
+像用户名密码这种比较重要的，不适合在此处保存。
+对于简单的基本类型数据和简单字符串建议保存。
+其他数据不要保存，容易造成信息泄露。
+此处用了ShareUtils封装：
+保存用法：
+ShareUtils.getInstance().resetShare()
+    .set("isOpen",true)
+    .set("loveAndroid","very")
+    .set("experienceAge",2)
+    .commit();
+
+当resetData("名称")中有参数为SharePreferences名称。
+取出方法：
+ShareUtils mShareUtil = ShareUtils.getInstance().resetShare();
+boolean isOpen = mShareUtil.getBoolean("isOpen");
+String loveAndroid = mShareUtil.getString("loveAndroid");
+int experienceAge = mShareUtil.getInt("experienceAge");

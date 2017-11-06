@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickShare"
+            android:text="缓存方式1-SharePreferences"/>
+
+        <Button
+            style="@style/btnFunctionGray"
+            android:onClick="clickProperties"
+            android:text="缓存方式2-Properties"/>
+
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickFile"
+            android:text="缓存方式3-文件（对象序列化）"/>
+
+        <Button
+            style="@style/btnFunctionGray"
+            android:onClick="clickDB"
+            android:text="缓存方式4-数据库（SQLCipher加密版）"/>
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickAllWay"
+            android:text="联合缓存-缓存集合-share-数据库"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickShowGetCacheResult"
+            android:text="取数据"/>
+
+        <Button
+            style="@style/btnFunctionGray"
+            android:onClick="clickSaveDataInCache"
+            android:text="存数据"/>
+
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickClearAllCache"
+            android:text="清除数据"/>
+        <Button
+            style="@style/btnFunctionGray"
+            android:onClick="clickClearShareAndListCache"
+            android:text="清除ShareCache和ListCache"/>
+        <Button
+            style="@style/btnFunctionBlue"
+            android:onClick="clickClearListCache"
+            android:text="清除ListCache"/>
+        <TextView
+            android:id="@+id/txt_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</ScrollView>
