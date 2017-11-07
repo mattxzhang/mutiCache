@@ -7,6 +7,7 @@ package com.dyy.yonxin.library2.cacheforandroid.cache;
 public interface ICacheWay<T> {
     void setNextCache(ICacheWay<T> nextCache);
     void setCacheSaveTime(long overDueTime);
+    void setCleanOverDueTime(boolean needClean);
     T getCache(T t);
     void clearCacheOverDueTime(T t);
     void saveObjInCache(T t);

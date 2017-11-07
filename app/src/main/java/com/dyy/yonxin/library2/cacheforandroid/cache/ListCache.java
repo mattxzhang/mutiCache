@@ -16,6 +16,7 @@ import java.util.List;
 public class ListCache<T> implements ICacheWay<T> {
     private ICacheWay<T> nextCache;
     private long overDueTime =  5 * 1000;//最佳为1/2的Share时间
+    private boolean needClean = true;
     private static final String CACHE_USER = "cacheUser";
     private static List<CacheBean> caches = new ArrayList<>();
 
@@ -27,6 +28,11 @@ public class ListCache<T> implements ICacheWay<T> {
     @Override
     public void setCacheSaveTime(long overDueTime) {
         this.overDueTime = overDueTime;
+    }
+
+    @Override
+    public void setCleanOverDueTime(boolean needClean) {
+        this.needClean = needClean;
     }
 
     private <T> String getCacheName(T t) {
@@ -81,6 +87,8 @@ public class ListCache<T> implements ICacheWay<T> {
 
     @Override
     public void clearCacheOverDueTime(T t) {
+        if(!needClean)
+            return;
         if (caches.size() == 0)
             return;
         for (int i = caches.size() - 1; i >= 0; i--) {

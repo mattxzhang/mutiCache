@@ -53,7 +53,7 @@ SerialUtil.saveObjectInFile(user,saveFile);
 User user = SerialUtil.restoreObjectByFile(saveFile,new User());
 ```
 
-##责任链模式联合缓存（Responsibility chain model combined cache）
+## 责任链模式联合缓存（Responsibility chain model combined cache）
 ###存（save）
 ```
 CacheUtil.setCacheUser(getMyCacheUser());

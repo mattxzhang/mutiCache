@@ -13,6 +13,7 @@ import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
 public class ShareCache<T> implements ICacheWay<T> {
     private ICacheWay<T> nextCache;
     private long overDueTime = 10 * 1000;//最佳为1/2的DB时间
+    private boolean needClean;
     private static final String CACHE_USER = "cacheUser";
 
     @Override
@@ -23,6 +24,11 @@ public class ShareCache<T> implements ICacheWay<T> {
     @Override
     public void setCacheSaveTime(long overDueTime) {
         this.overDueTime = overDueTime;
+    }
+
+    @Override
+    public void setCleanOverDueTime(boolean needClean) {
+        this.needClean = needClean;
     }
 
     private <T> String getCacheName(T t) {
@@ -61,6 +67,8 @@ public class ShareCache<T> implements ICacheWay<T> {
 
     @Override
     public void clearCacheOverDueTime(T t) {
+        if(!needClean)
+            return;
         String cacheName = getCacheName(t);
         long timestamp = ShareUtils.resetShare(cacheName)
                 .getLong("timestamp");

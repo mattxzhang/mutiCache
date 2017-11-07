@@ -56,6 +56,7 @@ public class CacheUtil {
     }
 
     private void connectCache() {
+        getCacheUserDBCache().setCleanOverDueTime(false);
         //链式结构是为了更加灵活，随意可拆，如果需要保密，只能存数据库,就直接用DBCache就行了，不用连。
         getCacheUserListCache().setNextCache(getCacheUserShareCache());
         getCacheUserShareCache().setNextCache(getCacheUserDBCache());

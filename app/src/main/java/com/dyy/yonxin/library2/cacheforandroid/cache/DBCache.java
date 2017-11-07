@@ -18,6 +18,7 @@ import java.util.List;
 public class DBCache<T> implements ICacheWay<T> {
     private ICacheWay<T> nextCache;
     private long overDueTime = 20 * 1000;
+    private boolean needClean = true;
 
 
     @Override
@@ -28,6 +29,11 @@ public class DBCache<T> implements ICacheWay<T> {
     @Override
     public void setCacheSaveTime(long overDueTime) {
         this.overDueTime = overDueTime;
+    }
+
+    @Override
+    public void setCleanOverDueTime(boolean needClean) {
+        this.needClean = needClean;
     }
 
     @Override
@@ -77,6 +83,8 @@ public class DBCache<T> implements ICacheWay<T> {
 
     @Override
     public void clearCacheOverDueTime(T t) {
+        if(!needClean)
+            return;
         if (t instanceof CacheUser) {
             if (TimeUtils.getTimeStampDif(getTimeStampByType(t)) > overDueTime) {
                 CacheUser mCacheUser = (CacheUser) t;
