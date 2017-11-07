@@ -63,7 +63,7 @@ CacheUtil.setCacheUser(getMyCacheUser());
 CacheUser cacheUser = CacheUtil.getCacheUser();
 ```
 
-###链式结构，可随意拆卸搭配：
+###链式结构，可随意拆卸搭配（Chain structure can be freely disassembled and matched）：
 ```
  getCacheUserListCache().setNextCache(getCacheUserShareCache());
  getCacheUserShareCache().setNextCache(getCacheUserDBCache());
