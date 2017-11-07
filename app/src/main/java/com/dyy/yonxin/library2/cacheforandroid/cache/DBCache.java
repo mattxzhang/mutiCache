@@ -15,27 +15,7 @@ import java.util.List;
  * Created by 段钰莹 on 2017/11/6.
  */
 
-public class DBCache<T> implements ICacheWay<T> {
-    private ICacheWay<T> nextCache;
-    private long overDueTime = 20 * 1000;
-    private boolean needClean = true;
-
-
-    @Override
-    public void setNextCache(ICacheWay<T> nextCache) {
-        this.nextCache = nextCache;
-    }
-
-    @Override
-    public void setCacheSaveTime(long overDueTime) {
-        this.overDueTime = overDueTime;
-    }
-
-    @Override
-    public void setCleanOverDueTime(boolean needClean) {
-        this.needClean = needClean;
-    }
-
+public class DBCache<T> extends Caches<T>  {
     @Override
     public T getCache(T t) {
         T cacheObj = getObjectAfterClear(t);

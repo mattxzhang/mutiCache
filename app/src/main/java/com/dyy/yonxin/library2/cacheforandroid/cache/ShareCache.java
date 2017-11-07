@@ -10,26 +10,8 @@ import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
  * Created by 段钰莹 on 2017/11/6.
  */
 
-public class ShareCache<T> implements ICacheWay<T> {
-    private ICacheWay<T> nextCache;
-    private long overDueTime = 10 * 1000;//最佳为1/2的DB时间
-    private boolean needClean;
+public class ShareCache<T> extends Caches<T> {
     private static final String CACHE_USER = "cacheUser";
-
-    @Override
-    public void setNextCache(ICacheWay<T> nextCache) {
-        this.nextCache = nextCache;
-    }
-
-    @Override
-    public void setCacheSaveTime(long overDueTime) {
-        this.overDueTime = overDueTime;
-    }
-
-    @Override
-    public void setCleanOverDueTime(boolean needClean) {
-        this.needClean = needClean;
-    }
 
     private <T> String getCacheName(T t) {
         if (t instanceof CacheUser)
