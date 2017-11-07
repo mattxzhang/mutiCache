@@ -23,7 +23,7 @@ int experienceAge = mShareUtil.getInt("experienceAge");
 
 ### Properties
 
-####使用Properties存数据（use Properties save data）
+#### 使用Properties存数据（use Properties save data）
 ```
  PropertiesUtil.resetProperties()
                 .put("version",1)
@@ -33,7 +33,7 @@ int experienceAge = mShareUtil.getInt("experienceAge");
                 .put("appName","CacheForAndroid")
                 .save(saveFile);
 ```
-####使用Properties读数据（use Properties restore data）
+#### 使用Properties读数据（use Properties restore data）
 ```
 PropertiesUtil mPropertiesUtil = PropertiesUtil.resetProperties().loadProperties(saveFile);
         int version = mPropertiesUtil.getInt("version");
@@ -58,12 +58,12 @@ User user = SerialUtil.restoreObjectByFile(saveFile,new User());
 ```
 CacheUtil.setCacheUser(getMyCacheUser());
 ```
-###取（restore）
+### 取（restore）
 ```
 CacheUser cacheUser = CacheUtil.getCacheUser();
 ```
 
-###链式结构，可随意拆卸搭配（Chain structure can be freely disassembled and matched）：
+### 链式结构，可随意拆卸搭配（Chain structure can be freely disassembled and matched）：
 ```
  getCacheUserListCache().setNextCache(getCacheUserShareCache());
  getCacheUserShareCache().setNextCache(getCacheUserDBCache());
