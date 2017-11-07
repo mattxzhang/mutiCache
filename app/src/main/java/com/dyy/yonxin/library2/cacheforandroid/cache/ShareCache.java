@@ -1,6 +1,5 @@
 package com.dyy.yonxin.library2.cacheforandroid.cache;
 
-import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.GsonUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.ShareUtils;
@@ -8,16 +7,11 @@ import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
 
 /**
  * Created by 段钰莹 on 2017/11/6.
+ * 添加新类别时，需修改getCacheName,不同对象用不同share文件
  */
 
-public class ShareCache<T> extends Caches<T> {
-    private static final String CACHE_USER = "cacheUser";
-
-    private <T> String getCacheName(T t) {
-        if (t instanceof CacheUser)
-            return CACHE_USER;
-        return "";
-    }
+public abstract class ShareCache<T> extends Caches<T> {
+    public abstract String getCacheName(T t);
 
     @Override
     public T getCache(T t) {

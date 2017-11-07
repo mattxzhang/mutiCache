@@ -4,7 +4,6 @@ import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.db.CacheUserDao;
 import com.dyy.yonxin.library2.cacheforandroid.manager.DBManager;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
-import com.dyy.yonxin.library2.cacheforandroid.util.DBExchangeUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
 
 import org.greenrobot.greendao.query.Query;
@@ -13,9 +12,14 @@ import java.util.List;
 
 /**
  * Created by 段钰莹 on 2017/11/6.
+ * 增加新的分类时，需要增加前面三个的分支，或者使用新的类继承它，重写这些方法
  */
 
-public class DBCache<T> extends Caches<T>  {
+public abstract class DBCache<T> extends Caches<T>  {
+    abstract void saveObjByType(T t);
+    abstract <T> T restoreNormalData(T t);
+    abstract <T> T getObjectInDB(T t);
+
     @Override
     public T getCache(T t) {
         T cacheObj = getObjectAfterClear(t);
@@ -39,17 +43,7 @@ public class DBCache<T> extends Caches<T>  {
         return cacheObj;
     }
 
-    private <T> T restoreNormalData(T t) {
-        if (t instanceof CacheUser)
-            return (T) DBExchangeUtil.getCacheUserDBRestore((CacheUser) t);
-        return t;
-    }
 
-    private <T> T getObjectInDB(T t) {
-        if (t instanceof CacheUser)
-            return (T) getCacheUserInDB();
-        return null;
-    }
 
     public CacheUser getCacheUserInDB() {
         Query<CacheUser> query = DBManager.getCacheUserDao().queryBuilder().build();
@@ -82,17 +76,7 @@ public class DBCache<T> extends Caches<T>  {
 
     @Override
     public void saveObjInCache(T t) {
-        CacheUser mCacheUser = (CacheUser) t;
-        if (mCacheUser == null)
-            return;
-        mCacheUser = DBExchangeUtil.getCacheUserReadyDB(mCacheUser);
-        CacheUser nowCacheUser = getCacheUserInDB();
-        if (nowCacheUser == null)
-            DBManager.getCacheUserDao().insert(mCacheUser);
-        else {
-            DBManager.getSession().getDatabase().execSQL("delete from " + CacheUserDao.TABLENAME + " where USER_ID=" + mCacheUser.getUserId());
-            DBManager.getCacheUserDao().insert(mCacheUser);
-        }
+        saveObjByType(t);
 
     }
 

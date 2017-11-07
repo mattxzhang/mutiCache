@@ -4,6 +4,9 @@ import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.cache.DBCache;
 import com.dyy.yonxin.library2.cacheforandroid.cache.ListCache;
 import com.dyy.yonxin.library2.cacheforandroid.cache.ShareCache;
+import com.dyy.yonxin.library2.cacheforandroid.cache.sub.CacheUserDBCache;
+import com.dyy.yonxin.library2.cacheforandroid.cache.sub.CacheUserListCache;
+import com.dyy.yonxin.library2.cacheforandroid.cache.sub.CacheUserShareCache;
 
 /**
  * Created by 段钰莹 on 2017/11/6.
@@ -64,19 +67,19 @@ public class CacheUtil {
 
     private ListCache<CacheUser> getCacheUserListCache(){
         if(cacheUserCacheList == null)
-            cacheUserCacheList = new ListCache<>();
+            cacheUserCacheList = new CacheUserListCache();
         return cacheUserCacheList;
     }
 
     private ShareCache<CacheUser> getCacheUserShareCache(){
         if(cacheUserCacheShare == null)
-            cacheUserCacheShare = new ShareCache<>();
+            cacheUserCacheShare = new CacheUserShareCache();
         return cacheUserCacheShare;
     }
 
     private DBCache<CacheUser> getCacheUserDBCache(){
         if(cacheUserCacheDB == null)
-            cacheUserCacheDB = new DBCache<>();
+            cacheUserCacheDB = new CacheUserDBCache();
         return cacheUserCacheDB;
     }
 }

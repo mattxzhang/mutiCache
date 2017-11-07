@@ -1,7 +1,6 @@
 package com.dyy.yonxin.library2.cacheforandroid.cache;
 
 import com.dyy.yonxin.library2.cacheforandroid.bean.CacheBean;
-import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.GsonUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
@@ -13,15 +12,10 @@ import java.util.List;
  * Created by 段钰莹 on 2017/11/6.
  */
 
-public class ListCache<T> extends Caches<T> {
+public abstract class ListCache<T> extends Caches<T> {
     private static final String CACHE_USER = "cacheUser";
     private static List<CacheBean> caches = new ArrayList<>();
-
-    private <T> String getCacheName(T t) {
-        if (t instanceof CacheUser)
-            return CACHE_USER;
-        return "";
-    }
+    public abstract String getCacheName(T t);
 
     @Override
     public T getCache(T t) {
