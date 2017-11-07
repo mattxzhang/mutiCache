@@ -49,10 +49,10 @@ public class ShareCache<T> implements ICacheWay<T> {
 
     private T getCacheShare(T t) {
         String cacheName = getCacheName(t);
-        long timestamp = ShareUtils.getInstance().resetShare(cacheName)
+        long timestamp = ShareUtils.resetShare(cacheName)
                 .getLong("timestamp");
         if(timestamp!=0){
-            String objJson = ShareUtils.getInstance().resetShare(cacheName)
+            String objJson = ShareUtils.resetShare(cacheName)
                     .getString("objContent");
             return GsonUtil.getObjectByJson(objJson,t);
         }
@@ -62,10 +62,10 @@ public class ShareCache<T> implements ICacheWay<T> {
     @Override
     public void clearCacheOverDueTime(T t) {
         String cacheName = getCacheName(t);
-        long timestamp = ShareUtils.getInstance().resetShare(cacheName)
+        long timestamp = ShareUtils.resetShare(cacheName)
                 .getLong("timestamp");
         if(TimeUtils.getTimeStampDif(timestamp)>overDueTime){
-            ShareUtils.getInstance().resetShare(cacheName)
+            ShareUtils.resetShare(cacheName)
                     .set("timestamp",0L)
                     .commit();
         }
@@ -76,7 +76,7 @@ public class ShareCache<T> implements ICacheWay<T> {
     public void saveObjInCache(T t) {
         String cacheName = getCacheName(t);
         String json = GsonUtil.getJsonByObject(t);
-        ShareUtils.getInstance().resetShare(cacheName)
+        ShareUtils.resetShare(cacheName)
                 .set("timestamp",TimeUtils.getNowTimeStamp())
                 .set("objContent",json)
                 .commit();
@@ -85,7 +85,7 @@ public class ShareCache<T> implements ICacheWay<T> {
     @Override
     public void clearCache(T t) {
         String cacheName = getCacheName(t);
-        ShareUtils.getInstance().resetShare(cacheName)
+        ShareUtils.resetShare(cacheName)
                 .set("timestamp",0L)
                 .commit();
     }

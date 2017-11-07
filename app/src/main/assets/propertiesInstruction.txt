@@ -13,14 +13,13 @@ Properies只能保存字符串数据
 测试不能保存字符串的手机：MI 5X
 为了兼容，自己做了一个PropertiesUtil
 取数据：
-PropertiesUtil.getInstance().resetProperties().loadProperties(saveFile);
-PropertiesUtil mPropertiesUtil = PropertiesUtil.getInstance();
+PropertiesUtil mPropertiesUtil = PropertiesUtil.resetProperties().loadProperties(saveFile);
         int version = mPropertiesUtil.getInt("version");
         int dbVersion = mPropertiesUtil.getInt("dbVersion");
         double versionName = mPropertiesUtil.getDouble("versionName");
         boolean isLatestVersion = mPropertiesUtil.getBoolean("isLatestVersion");
 存数据：
- PropertiesUtil.getInstance().resetProperties()
+ PropertiesUtil.resetProperties()
                 .put("version",1)
                 .put("dbVersion",2)
                 .put("versionName",1.0)

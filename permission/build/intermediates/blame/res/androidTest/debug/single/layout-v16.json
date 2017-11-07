@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\personalProject\\mutiCache\\permission\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\1e3e6d435f8bca085a29f30c729a44542ce39cd8\\output\\res\\layout-v16\\notification_template_custom_big.xml"
+    },
+    {
         "merged": "E:\\personalProject\\CacheForAndorid\\permission\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16\\notification_template_custom_big.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1e3e6d435f8bca085a29f30c729a44542ce39cd8\\output\\res\\layout-v16\\notification_template_custom_big.xml"
     }

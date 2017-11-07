@@ -20,3 +20,13 @@ DBManager.getMyDBDao().update(oldUser);
 查找：
 Query<DBUser> query= DBManager.getMyDBDao().queryBuilder().build();
 List<DBUser> dbUsers = query.list();
+
+以上有@Id主键，无主键删除修改请用，否则报错无主键：
+DBManager.getXXDao().getSession().getDatabase().execSQL("SQL语句");
+
+另greendao不能使用集合，用集合请用greendao的@Transient,然后用个字符串，存前将数据化为json转存字符串，取后转移回集合。
+这个转移操作不能写在bean内，使用@Keep也不行，必须另写工具类，因为在用new TypeToken<List<String>>(){}.getType()会出错。
+
+最后，greendao不支持继承字段，可把公共方法抽象形式扔在父类，但变量名必须每张表字段单独定。
+
+

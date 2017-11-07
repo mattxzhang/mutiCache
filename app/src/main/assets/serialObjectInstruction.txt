@@ -5,23 +5,8 @@
 [因为一般只用来装全局User，其他不适合，所以不做封装]
 本身无加密功能（乱码时序列化的结果），请自行用aes或md5等加密。
 
-1.bean类实现Serializable接口
+1.bean类【必须实现Serializable接口】
 2.序列化
-   User user = new User();
-   user.setUserId(1);
-   user.setName("咸蛋超人");
-   user.setPassoword("dbdqxmn");
-
-   FileOutputStream fos = new FileOutputStream(file);
-   ObjectOutputStream oos = new ObjectOutputStream(fos);
-   oos.writeObject(user);
-   oos.flush();
-   oos.close();
-   fos.close();
+    SerialUtil.saveObjectInFile(user,saveFile);;
  3.反序列化
-    FileOutputStream fos = new FileOutputStream(file);
-    ObjectOutputStream oos = new ObjectOutputStream(fos);
-    oos.writeObject(user);
-    oos.flush();
-    oos.close();
-    fos.close();
+     User user = SerialUtil.restoreObjectByFile(saveFile,new User());

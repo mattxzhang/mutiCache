@@ -13,7 +13,7 @@ import java.util.Properties;
 public class PropertiesUtil {
     private static PropertiesUtil mPropertiesUtil;
     private PropertiesUtil(){}
-    public static PropertiesUtil getInstance(){
+    private static PropertiesUtil getInstance(){
         if(mPropertiesUtil == null)
             mPropertiesUtil = new PropertiesUtil();
         return mPropertiesUtil;
@@ -21,9 +21,9 @@ public class PropertiesUtil {
 
     private Properties properties = new Properties();
 
-    public PropertiesUtil resetProperties(){
-        properties.clear();
-        return this;
+    public static PropertiesUtil resetProperties(){
+        PropertiesUtil.getInstance().properties.clear();
+        return PropertiesUtil.getInstance();
     }
 
     public PropertiesUtil put(String key,String value){
@@ -69,7 +69,7 @@ public class PropertiesUtil {
         }
     }
 
-    public void loadProperties(File saveFile){
+    public PropertiesUtil loadProperties(File saveFile){
         FileInputStream in = null;
         try {
             in = new FileInputStream(saveFile);
@@ -79,6 +79,7 @@ public class PropertiesUtil {
         }finally {
             if(in!=null)
                 closeInputStream(in);
+            return this;
         }
     }
 

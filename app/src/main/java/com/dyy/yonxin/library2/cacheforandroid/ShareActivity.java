@@ -21,7 +21,7 @@ public class ShareActivity extends SimpleCacheActivity {
 
 
     public void clickShareSaveDataDefault(View view){
-        ShareUtils.getInstance().resetShare()
+        ShareUtils.resetShare()
                 .set("isOpen",true)
                 .set("loveAndroid","very")
                 .set("experienceAge",2)
@@ -30,7 +30,7 @@ public class ShareActivity extends SimpleCacheActivity {
     }
 
     public void clickShareGetDataDefault(View view){
-        ShareUtils mShareUtil = ShareUtils.getInstance().resetShare();
+        ShareUtils mShareUtil = ShareUtils.resetShare();
         boolean isOpen = mShareUtil.getBoolean("isOpen");
         String loveAndroid = mShareUtil.getString("loveAndroid");
         int experienceAge = mShareUtil.getInt("experienceAge");
@@ -38,7 +38,7 @@ public class ShareActivity extends SimpleCacheActivity {
     }
 
     public void clickShareSaveDataNamed(View view){
-        ShareUtils.getInstance().resetShare("mydatas")
+        ShareUtils.resetShare("mydatas")
                 .set("isOpen",true)
                 .set("loveAndroid","very")
                 .set("experienceAge",2)
@@ -47,7 +47,7 @@ public class ShareActivity extends SimpleCacheActivity {
     }
 
     public void clickShareGetDataNamed(View view){
-        ShareUtils mShareUtil = ShareUtils.getInstance().resetShare("mydatas");
+        ShareUtils mShareUtil = ShareUtils.resetShare("mydatas");
         boolean isOpen = mShareUtil.getBoolean("isOpen");
         String loveAndroid = mShareUtil.getString("loveAndroid");
         int experienceAge = mShareUtil.getInt("experienceAge");

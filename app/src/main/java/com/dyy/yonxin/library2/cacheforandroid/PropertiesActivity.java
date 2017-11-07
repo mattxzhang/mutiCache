@@ -32,7 +32,7 @@ public class PropertiesActivity extends SimpleCacheActivity {
             return;
         }
 
-        PropertiesUtil.getInstance().resetProperties()
+        PropertiesUtil.resetProperties()
                 .put("version",1)
                 .put("dbVersion",2)
                 .put("versionName",1.0)
@@ -48,8 +48,8 @@ public class PropertiesActivity extends SimpleCacheActivity {
             return;
         }
 
-        PropertiesUtil.getInstance().resetProperties().loadProperties(saveFile);
-        showProperties();
+        PropertiesUtil savedProperties = PropertiesUtil.resetProperties().loadProperties(saveFile);
+        showProperties(savedProperties);
     }
 
     private void askSdcardPermission() {
@@ -73,12 +73,11 @@ public class PropertiesActivity extends SimpleCacheActivity {
 
 
 
-    private void showProperties() {
-        PropertiesUtil mPropertiesUtil = PropertiesUtil.getInstance();
-        int version = mPropertiesUtil.getInt("version");
-        int dbVersion = mPropertiesUtil.getInt("dbVersion");
-        double versionName = mPropertiesUtil.getDouble("versionName");
-        boolean isLatestVersion = mPropertiesUtil.getBoolean("isLatestVersion");
+    private void showProperties(PropertiesUtil savedProperties) {
+        int version = savedProperties.getInt("version");
+        int dbVersion = savedProperties.getInt("dbVersion");
+        double versionName = savedProperties.getDouble("versionName");
+        boolean isLatestVersion = savedProperties.getBoolean("isLatestVersion");
 
         ToastUtil.shorts("version="+version);
         ToastUtil.shorts("dbVersion="+dbVersion);
