@@ -8,6 +8,7 @@ public interface ICacheWay<T> {
     void setNextCache(ICacheWay<T> nextCache);
     void setCacheSaveTime(long overDueTime);
     void setCleanOverDueTime(boolean needClean);
+    void setObjSingle(boolean singleObj);
     T getCache(T t);
     void clearCacheOverDueTime(T t);
     void saveObjInCache(T t);

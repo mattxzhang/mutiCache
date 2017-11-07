@@ -1,5 +1,7 @@
 package com.dyy.yonxin.library2.cacheforandroid.cache;
 
+import com.dyy.yonxin.library2.cacheforandroid.CacheForAndorid;
+import com.dyy.yonxin.library2.cacheforandroid.R;
 import com.dyy.yonxin.library2.cacheforandroid.bean.CacheBean;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.GsonUtil;
@@ -23,7 +25,7 @@ public abstract class ListCache<T> extends Caches<T> {
         T cacheObj = getCacheInList(t);
 
         if(cacheObj!=null){
-            CacheUtil.cacheMsg = "从ListCache拿到数据\n";
+            CacheUtil.cacheMsg = CacheForAndorid.getRes().getString(R.string.hint_data_from_listcache);
             return cacheObj;
         }else if(nextCache!=null){
             cacheObj = nextCache.getCache(t);
@@ -32,7 +34,7 @@ public abstract class ListCache<T> extends Caches<T> {
                 return cacheObj;
             }
         }
-        CacheUtil.cacheMsg = "没拿到数据\n";
+        CacheUtil.cacheMsg = CacheForAndorid.getRes().getString(R.string.hint_no_data_from_cache);
         return null;
     }
 

@@ -20,7 +20,7 @@ public abstract class SimpleCacheActivity extends AppCompatActivity {
 
     private void showInstructionDialog(String instructions) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("使用说明")
+        builder.setTitle(CacheForAndorid.getRes().getString(R.string.btn_instructions))
                 .setMessage(instructions)
                 .show();
     }

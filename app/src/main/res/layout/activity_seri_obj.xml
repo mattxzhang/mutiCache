@@ -10,15 +10,15 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickInstructions"
-            android:text="使用说明"/>
+            android:text="@string/btn_instructions"/>
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickSerialzable"
-            android:text="序列化对象"/>
+            android:text="@string/btn_serializable"/>
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickDeserializable"
-            android:text="反序列化对象"/>
+            android:text="@string/btn_deserializable"/>
     </LinearLayout>
 
 </ScrollView>

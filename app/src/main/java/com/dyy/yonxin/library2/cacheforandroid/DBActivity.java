@@ -54,7 +54,7 @@ public class DBActivity extends SimpleCacheActivity {
 //            return;
 //        }
         DBManager.getMyDBDao().insert(user);
-        ToastUtil.shorts("保存成功");
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_save_success));
 
     }
 
@@ -67,24 +67,23 @@ public class DBActivity extends SimpleCacheActivity {
     private CheckFormUtil getCheckDBUserInputData() {
         String name = edtUserName.getText().toString();
         CheckFormUtil util = new CheckFormUtil();
-
-        return util.addFormElement(name,"请输入用户名");
+        return util.addFormElement(name,CacheForAndorid.getRes().getString(R.string.please_input_user_name));
     }
 
     public void clickDBUserDelete(View view) {
         CheckFormUtil checkFormUtil = new CheckFormUtil();
         String userId = edtUserId.getText().toString();
 
-        if(!checkFormUtil.isPassCheck(userId,"请输入用户ID")){
+        if(!checkFormUtil.isPassCheck(userId,CacheForAndorid.getRes().getString(R.string.please_input_user_id))){
             ToastUtil.longs(checkFormUtil.getErrMessage());
             return;
         }
         List<DBUser> dbUsers =  DBManager.getMyDBDao().queryBuilder().where(DBUserDao.Properties.Id.eq(userId)).build().list();
             if(dbUsers != null && dbUsers.size()>0){
                 DBManager.getMyDBDao().delete(dbUsers.get(0));
-                ToastUtil.longs("删除成功");
+                ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_delete_success));
             }else{
-                ToastUtil.longs("不存在该用户");
+                ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_not_exist_user));
             }
 
 
@@ -101,7 +100,7 @@ public class DBActivity extends SimpleCacheActivity {
         user.setId(Long.parseLong(edtUserId.getText().toString()));
         user.setName(edtUserName.getText().toString());
         if(!hasSavedDBUser(""+user.getId())){
-            ToastUtil.longs("该用户不存在，无法修改数据");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_cannot_update_not_exist_user));
             return;
         }
 
@@ -114,7 +113,7 @@ public class DBActivity extends SimpleCacheActivity {
         DBUser oldUser = dbUsers.get(0);
         oldUser.setName(newUser.getName());
         DBManager.getMyDBDao().update(oldUser);
-        ToastUtil.longs("更新成功");
+        ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_update_success));
 
     }
 
@@ -131,9 +130,9 @@ public class DBActivity extends SimpleCacheActivity {
         List<DBUser> dbUsers =  DBManager.getMyDBDao().queryBuilder().build().list();
         if(dbUsers != null && dbUsers.size()>0){
             DBManager.getMyDBDao().deleteAll();
-            ToastUtil.longs("删除成功");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_delete_success));
         }else{
-            ToastUtil.longs("不存在该用户");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_not_exist_user));
         }
     }
 
@@ -153,13 +152,14 @@ public class DBActivity extends SimpleCacheActivity {
         DBUser user3 = user.cloneDBUser();
 
         //注意不能用同一个对象，否则bug
+        //Notice that you cannot user a same object,otherwise bug will appear
         DBUser[] users = new DBUser[3];
         users[0]=user;
         users[1]=user2;
         users[2]=user3;
         try{
             DBManager.getMyDBDao().insertInTx(users);
-            ToastUtil.shorts("保存成功");
+            ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_save_success));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -167,13 +167,15 @@ public class DBActivity extends SimpleCacheActivity {
     }
 
     public void clickDBUserDeleteTx(View view) {
-        //offset:跳过前面多少条，limit查询数目多少条，所以此处查到的是第二条和第三条
+        //offset:跳过前面多少条，limit:查询数目多少条，所以此处查到的是第二条和第三条
+        //offset:skip front count of data,limit:how many datas would you want
+        // in this place you can get the second and the third line of datas
         List<DBUser> dbUsers =  DBManager.getMyDBDao().queryBuilder().offset(1).limit(2).build().list();
         if(dbUsers != null && dbUsers.size()>0){
             DBManager.getMyDBDao().deleteInTx(dbUsers);
-            ToastUtil.longs("删除成功");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_delete_success));
         }else{
-            ToastUtil.longs("不存在该用户");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_not_exist_user));
         }
     }
 
@@ -186,10 +188,6 @@ public class DBActivity extends SimpleCacheActivity {
 
         DBUser user = new DBUser();
         user.setName(edtUserName.getText().toString());
-//        if(!hasSavedDBUser(""+user.getId())){
-//            ToastUtil.longs("该用户不存在，无法修改数据");
-//            return;
-//        }
 
         updateUserTx(user);
     }
@@ -201,7 +199,7 @@ public class DBActivity extends SimpleCacheActivity {
             dbUser.setName(newUser.getName());
         }
         DBManager.getMyDBDao().updateInTx(dbUsers);
-        ToastUtil.longs("更新成功");
+        ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_update_success));
 
     }
 }

@@ -9,17 +9,17 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickInstructions"
-            android:text="使用说明"/>
+            android:text="@string/btn_instructions"/>
 
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickSetProperties"
-            android:text="设置Properties"/>
+            android:text="@string/btn_set_properties"/>
 
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickGetProperties"
-            android:text="获取Properties"/>
+            android:text="@string/btn_get_properties"/>
     </LinearLayout>
 
 </ScrollView>

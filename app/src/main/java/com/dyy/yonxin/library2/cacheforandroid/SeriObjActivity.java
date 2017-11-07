@@ -51,7 +51,7 @@ public class SeriObjActivity extends SimpleCacheActivity {
     private User getSaveUser() {
         User user = new User();
         user.setUserId(1);
-        user.setName("咸蛋超人");
+        user.setName("super man");
         user.setPassword("dbdqxmn");
         return user;
     }

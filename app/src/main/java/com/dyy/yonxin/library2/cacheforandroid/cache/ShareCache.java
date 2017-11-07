@@ -1,5 +1,7 @@
 package com.dyy.yonxin.library2.cacheforandroid.cache;
 
+import com.dyy.yonxin.library2.cacheforandroid.CacheForAndorid;
+import com.dyy.yonxin.library2.cacheforandroid.R;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.GsonUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.ShareUtils;
@@ -8,6 +10,7 @@ import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
 /**
  * Created by 段钰莹 on 2017/11/6.
  * 添加新类别时，需修改getCacheName,不同对象用不同share文件
+ * If you need a new Object cache,just extends ShareCache and overriade method getCacheName()
  */
 
 public abstract class ShareCache<T> extends Caches<T> {
@@ -18,7 +21,7 @@ public abstract class ShareCache<T> extends Caches<T> {
         clearCacheOverDueTime(t);
         T cacheObj = getCacheShare(t);
         if(cacheObj!=null){
-            CacheUtil.cacheMsg = "从ShareCache拿到数据\n";
+            CacheUtil.cacheMsg = CacheForAndorid.getRes().getString(R.string.hint_data_from_sharecache);
             return cacheObj;
         } else if(nextCache!=null){
             cacheObj = nextCache.getCache(t);

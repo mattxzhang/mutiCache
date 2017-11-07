@@ -11,6 +11,8 @@ public class CacheUserShareCache extends ShareCache<CacheUser> {
     static final String CACHE_USER = "cacheUser";
     @Override
     public  String getCacheName(CacheUser mCacheUser){
+        if(singleObj)
+            return CACHE_USER;
         return CACHE_USER+mCacheUser.getUserId();
     }
 }

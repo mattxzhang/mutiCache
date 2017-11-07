@@ -1,30 +1,31 @@
 package com.dyy.yonxin.library2.cacheforandroid.cache;
 
+import com.dyy.yonxin.library2.cacheforandroid.CacheForAndorid;
+import com.dyy.yonxin.library2.cacheforandroid.R;
 import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.db.CacheUserDao;
 import com.dyy.yonxin.library2.cacheforandroid.manager.DBManager;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
 import com.dyy.yonxin.library2.cacheforandroid.util.TimeUtils;
 
-import org.greenrobot.greendao.query.Query;
-
-import java.util.List;
-
 /**
  * Created by 段钰莹 on 2017/11/6.
- * 增加新的分类时，需要增加前面三个的分支，或者使用新的类继承它，重写这些方法
+ * 增加新的对象缓存时，需要使用新的类继承DBCache，重写这些方法
+ * When adding new object caching, you need to use new classes to inherit DBCache, and rewrite these methods
+ * @see com.dyy.yonxin.library2.cacheforandroid.cache.sub.CacheUserDBCache
+ *
  */
 
 public abstract class DBCache<T> extends Caches<T>  {
-    abstract void saveObjByType(T t);
-    abstract <T> T restoreNormalData(T t);
-    abstract <T> T getObjectInDB(T t);
+    public abstract void saveObjByType(T t);
+    public abstract  T restoreNormalData(T t);
+    public abstract  T getObjectInDB(T t);
 
     @Override
     public T getCache(T t) {
         T cacheObj = getObjectAfterClear(t);
         if (cacheObj != null) {
-            CacheUtil.cacheMsg = "从DBCache拿到数据\n";
+            CacheUtil.cacheMsg = CacheForAndorid.getRes().getString(R.string.get_data_from_dbcache);
             return restoreNormalData(cacheObj);
         } else if (nextCache != null) {
             cacheObj = nextCache.getCache(t);
@@ -41,18 +42,6 @@ public abstract class DBCache<T> extends Caches<T>  {
             cacheObj = getObjectInDB(t);
         }
         return cacheObj;
-    }
-
-
-
-    public CacheUser getCacheUserInDB() {
-        Query<CacheUser> query = DBManager.getCacheUserDao().queryBuilder().build();
-        List<CacheUser> dbUsers = query.list();
-
-        if (dbUsers != null && dbUsers.size() > 0)
-            return dbUsers.get(0);
-
-        return null;
     }
 
     @Override

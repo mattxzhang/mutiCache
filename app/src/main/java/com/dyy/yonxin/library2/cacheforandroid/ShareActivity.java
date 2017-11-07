@@ -26,7 +26,7 @@ public class ShareActivity extends SimpleCacheActivity {
                 .set("loveAndroid","very")
                 .set("experienceAge",2)
                 .commit();
-        ToastUtil.shorts("保存了isOpen=true\nloveAndroid=very\nexperienceAge=2");
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_saved)+"isOpen=true\nloveAndroid=very\nexperienceAge=2");
     }
 
     public void clickShareGetDataDefault(View view){
@@ -34,7 +34,7 @@ public class ShareActivity extends SimpleCacheActivity {
         boolean isOpen = mShareUtil.getBoolean("isOpen");
         String loveAndroid = mShareUtil.getString("loveAndroid");
         int experienceAge = mShareUtil.getInt("experienceAge");
-        ToastUtil.shorts("取出了isOpen="+isOpen+"\nloveAndroid="+loveAndroid+"\nexperienceAge="+experienceAge);
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_saved)+"isOpen="+isOpen+"\nloveAndroid="+loveAndroid+"\nexperienceAge="+experienceAge);
     }
 
     public void clickShareSaveDataNamed(View view){
@@ -43,7 +43,7 @@ public class ShareActivity extends SimpleCacheActivity {
                 .set("loveAndroid","very")
                 .set("experienceAge",2)
                 .commit();
-        ToastUtil.shorts("保存了isOpen=true\nloveAndroid=very\nexperienceAge=2");
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_saved)+"isOpen=true\nloveAndroid=very\nexperienceAge=2");
     }
 
     public void clickShareGetDataNamed(View view){
@@ -51,7 +51,7 @@ public class ShareActivity extends SimpleCacheActivity {
         boolean isOpen = mShareUtil.getBoolean("isOpen");
         String loveAndroid = mShareUtil.getString("loveAndroid");
         int experienceAge = mShareUtil.getInt("experienceAge");
-        ToastUtil.shorts("取出了isOpen="+isOpen+"\nloveAndroid="+loveAndroid+"\nexperienceAge="+experienceAge);
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_saved)+"isOpen="+isOpen+"\nloveAndroid="+loveAndroid+"\nexperienceAge="+experienceAge);
     }
 
 

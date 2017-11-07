@@ -11,6 +11,8 @@ public class CacheUserListCache extends ListCache<CacheUser> {
     static final String CACHE_USER = "cacheUser";
     @Override
     public String getCacheName(CacheUser cacheUser) {
+        if(singleObj)
+            return CACHE_USER;
         return CACHE_USER+cacheUser.getUserId();
     }
 }

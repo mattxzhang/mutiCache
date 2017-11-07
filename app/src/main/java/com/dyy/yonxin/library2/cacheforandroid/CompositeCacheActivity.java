@@ -7,7 +7,9 @@ import android.widget.TextView;
 
 import com.dyy.yonxin.library2.cacheforandroid.bean.CacheUser;
 import com.dyy.yonxin.library2.cacheforandroid.util.CacheUtil;
+import com.dyy.yonxin.library2.cacheforandroid.util.PropertiesUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,12 @@ public class CompositeCacheActivity extends AppCompatActivity {
     }
 
     public void clickShowGetCacheResult(View view) {
-        CacheUser cacheUser = CacheUtil.getCacheUser();
+        CacheUser mCacheUser = new CacheUser();
+        mCacheUser.setUserId(PropertiesUtil.resetProperties().loadProperties(getSaveFile()).getInt("cacheUserId"));
+        //上方子类配置需要多个相同类的不同对象时，设置好该识别变量，取出此类型
+        //if you need to save different object with the same object,you must save a recognized varriable and save
+        //it in different place.
+        CacheUser cacheUser = CacheUtil.getCacheUser(mCacheUser);
         if (cacheUser == null)
             txtResult.append(CacheUtil.cacheMsg);
         else
@@ -31,8 +38,23 @@ public class CompositeCacheActivity extends AppCompatActivity {
 
 
     public void clickSaveDataInCache(View view) {
+        CacheUser mCacheUser = getMyCacheUser();
+        //如果需要保存多条数据，就用id来区分他们，否则请使用setObjSingle来标识他们
+        //If you need to save a lot of datas,use ID to distinguish them.
+        // Otherwise,you must use setObjSingle(true) to flag them.
+        PropertiesUtil.resetProperties()
+                .put("cacheUserId",mCacheUser.getUserId())
+                .save(getSaveFile());
         CacheUtil.setCacheUser(getMyCacheUser());
-        txtResult.append("保存到缓存\n");
+        txtResult.append(CacheForAndorid.getRes().getString(R.string.hint_save_in_cache));
+    }
+
+    private File getSaveFile() {
+        File storageFile = CacheForAndorid.getSuperApp().getStorageDirectory();
+        if(storageFile.getPath().equals(""))
+            return storageFile;
+        File propertyFile = new File(storageFile,"cacheIds.properties");
+        return propertyFile;
     }
 
     private CacheUser getMyCacheUser() {
@@ -45,27 +67,27 @@ public class CompositeCacheActivity extends AppCompatActivity {
 
     public List<String> getCacheFriends() {
         List<String> mCacheFriends = new ArrayList<>();
-        mCacheFriends.add("火星人");
-        mCacheFriends.add("丧尸");
-        mCacheFriends.add("哆啦A梦");
+        mCacheFriends.add("a");
+        mCacheFriends.add("b");
+        mCacheFriends.add("c");
         return mCacheFriends;
     }
 
     public void clickClearAllCache(View view) {
         CacheUser mCacheUser = new CacheUser();
         CacheUtil.clearAllCacheUser(mCacheUser);
-        txtResult.append("清空缓存\n");
+        txtResult.append(CacheForAndorid.getRes().getString(R.string.btn_clear_all)+"\n");
     }
 
     public void clickClearShareAndListCache(View view) {
         CacheUser mCacheUser = new CacheUser();
         CacheUtil.clearCacheUserShare(mCacheUser);
-        txtResult.append("清除Share和List缓存\n");
+        txtResult.append(CacheForAndorid.getRes().getString(R.string.btn_clear_list_share)+"\n");
     }
 
     public void clickClearListCache(View view) {
         CacheUser mCacheUser = new CacheUser();
         CacheUtil.clearCacheUserList(mCacheUser);
-        txtResult.append("清除List缓存\n");
+        txtResult.append(CacheForAndorid.getRes().getString(R.string.btn_clear_list)+"\n");
     }
 }

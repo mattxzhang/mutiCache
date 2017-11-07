@@ -10,11 +10,11 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickHasKey"
-            android:text="有主键"/>
+            android:text="@string/btn_has_key"/>
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickKeyNone"
-            android:text="无主键"/>
+            android:text="@string/btn_no_key"/>
     </LinearLayout>
 
 </ScrollView>

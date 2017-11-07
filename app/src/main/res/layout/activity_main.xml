@@ -10,26 +10,26 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickShare"
-            android:text="缓存方式1-SharePreferences"/>
+            android:text="@string/btn_cache_share"/>
 
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickProperties"
-            android:text="缓存方式2-Properties"/>
+            android:text="@string/btn_cache_properties"/>
 
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickFile"
-            android:text="缓存方式3-文件（对象序列化）"/>
+            android:text="@string/btn_cache_obj"/>
 
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickDB"
-            android:text="缓存方式4-数据库（SQLCipher加密版）"/>
+            android:text="@string/btn_cache_database"/>
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickAllWay"
-            android:text="联合缓存-缓存集合-share-数据库"/>
+            android:text="@string/btn_composite_cache"/>
     </LinearLayout>
 
 </ScrollView>

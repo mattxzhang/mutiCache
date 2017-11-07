@@ -10,25 +10,25 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickShowGetCacheResult"
-            android:text="取数据"/>
+            android:text="@string/btn_get_data"/>
 
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickSaveDataInCache"
-            android:text="存数据"/>
+            android:text="@string/btn_save_data"/>
 
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickClearAllCache"
-            android:text="清除数据"/>
+            android:text="@string/btn_clear_all"/>
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickClearShareAndListCache"
-            android:text="清除ShareCache和ListCache"/>
+            android:text="@string/btn_clear_list_share"/>
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickClearListCache"
-            android:text="清除ListCache"/>
+            android:text="@string/btn_clear_list"/>
         <TextView
             android:id="@+id/txt_result"
             android:layout_width="match_parent"

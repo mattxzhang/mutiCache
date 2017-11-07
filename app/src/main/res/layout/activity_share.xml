@@ -10,26 +10,26 @@
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickInstructions"
-            android:text="使用说明"/>
+            android:text="@string/btn_instructions"/>
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickShareSaveDataDefault"
-            android:text="默认SharePreferences保存"/>
+            android:text="@string/btn_set_default_share"/>
 
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickShareGetDataDefault"
-            android:text="默认SharePreferences获取"/>
+            android:text="@string/btn_get_default_share"/>
 
         <Button
             style="@style/btnFunctionGray"
             android:onClick="clickShareSaveDataNamed"
-            android:text="命名SharePreferences保存"/>
+            android:text="@string/btn_set_named_share"/>
 
         <Button
             style="@style/btnFunctionBlue"
             android:onClick="clickShareGetDataNamed"
-            android:text="命名SharePreferences获取"/>
+            android:text="@string/btn_get_named_share"/>
     </LinearLayout>
 
 </ScrollView>

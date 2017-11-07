@@ -44,7 +44,7 @@ public class DBNoKeyActivity extends AppCompatActivity{
         user.setPassword(edtUserPwd.getText().toString());
 
         DBManager.getNoKeyDao().insert(user);
-        ToastUtil.shorts("保存成功");
+        ToastUtil.shorts(CacheForAndorid.getRes().getString(R.string.hint_save_success));
 
     }
 
@@ -53,25 +53,27 @@ public class DBNoKeyActivity extends AppCompatActivity{
         String password = edtUserPwd.getText().toString();
         CheckFormUtil util = new CheckFormUtil();
 
-        return util.addFormElement(name, "请输入用户名")
-                .addFormElement(password, "请输入密码");
+        return util.addFormElement(name, CacheForAndorid.getRes().getString(R.string.please_input_user_name))
+                .addFormElement(password, CacheForAndorid.getRes().getString(R.string.please_input_user_password));
     }
 
     public void clickDBUserDelete(View view) {
         CheckFormUtil checkFormUtil = new CheckFormUtil();
         String userName = edtUserName.getText().toString();
 
-        if(!checkFormUtil.isPassCheck(userName,"请输入用户名")){
+        if(!checkFormUtil.isPassCheck(userName,CacheForAndorid.getRes().getString(R.string.please_input_user_name))){
             ToastUtil.longs(checkFormUtil.getErrMessage());
             return;
         }
         List<DBUserNoKey> dbUsers =  DBManager.getNoKeyDao().queryBuilder().where(DBUserNoKeyDao.Properties.Name.eq(userName)).build().list();
         if(dbUsers != null && dbUsers.size()>0){
-//            DBManager.getNoKeyDao().deleteInTx(dbUsers);//无主键不能用，失败。
+            //你不能使用下列代码，因为DBUserNoKey这张表没有主键
+            //you cannot use this line of code,because you have no Primary Key in table BUSER_NO_KEY.
+//            DBManager.getNoKeyDao().deleteInTx(dbUsers);
             DBManager.getSession().getDatabase().execSQL("delete from DBUSER_NO_KEY where name='"+userName+"'");
-            ToastUtil.longs("删除成功");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_delete_success));
         }else{
-            ToastUtil.longs("不存在该用户");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_not_exist_user));
         }
     }
 
@@ -91,14 +93,15 @@ public class DBNoKeyActivity extends AppCompatActivity{
 
     private void updateUser(DBUserNoKey newUser) {
         //这个也只能用SQL语句
+        //this is also only SQL can be used.
         List<DBUserNoKey> dbUsers =  DBManager.getNoKeyDao().queryBuilder().where(DBUserNoKeyDao.Properties.Name.eq(newUser.getName())).build().list();
         if(dbUsers!=null && dbUsers.size() > 0){
             DBManager.getSession().getDatabase()
                     .execSQL("update DBUSER_NO_KEY set password=? where name=?"
                             ,new Object[]{newUser.getPassword(),newUser.getName()});
-            ToastUtil.longs("更新成功");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_update_success));
         }else{
-            ToastUtil.longs("没有该用户");
+            ToastUtil.longs(CacheForAndorid.getRes().getString(R.string.hint_not_exist_user));
         }
     }
 
