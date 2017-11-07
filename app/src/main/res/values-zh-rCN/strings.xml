@@ -46,5 +46,6 @@
     <string name="hint_restored">取出了</string>
     <string name="hint_data_from_listcache">从ListCache拿到数据\n</string>
     <string name="hint_no_data_from_cache">没拿到数据\n</string>
+    <string name="hint_data_from_sharecache">从ShareCache拿到数据\n</string>
     <string name="hint_save_in_cache">保存到缓存\n</string>
 </resources>

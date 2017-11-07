@@ -72,7 +72,8 @@ public class CacheUtil {
         //是否采用超出定时清空数据，默认采用
         //Whether to use empty data beyond the time limit, the default adoption
         getCacheUserDBCache().setCleanOverDueTime(false);
-
+        getCacheUserShareCache().setCleanOverDueTime(false);
+        getCacheUserListCache().setCleanOverDueTime(false);
         //采用定时清空时，可设置定时清空时间
         //When the timer is empty, the time of clearing empty can be set
 //        getCacheUserDBCache().setCacheSaveTime(5*1000);
